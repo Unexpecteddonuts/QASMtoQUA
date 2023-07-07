@@ -76,8 +76,8 @@ creg(args)
 h(args)
 cx(args)
 x(args)
-sx(args)
-sxdg(args)
+sx(args)                                # 90° phase rotation on x axis
+sxdg(args)                              # -90° phase rotation on x axis
 y(args)                                 # 180° phase rotation on y axis
 z(args)                                 # 180° phase rotation on z axis
 barrier(args)                           # aligns qubit n to readout resonator n-1
