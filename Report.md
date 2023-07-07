@@ -95,3 +95,10 @@ python3 wrapper.py
 input_filename -> input file containing the JSON data with attribute QUA. [must be .JSON  or .txt filetype]
 output_file.py -> file to pipeline the generated code.[must be .py filetype]
 ```
+
+## TO BE DONE:
+```
+1. ADD THE X, Y ,Z UPDATED MACROS TO MACROS.PY
+2. GENERALISE THE JSON/TEXT PARSING
+3. FIX A FEW INSTANTIATING ISSUES IN THE WRAPPER.PY
+```
