@@ -26,14 +26,18 @@ The second block of functions basically has a list of functions that are named a
 Once function `h` gets control it reads the next menber of the list, which according to QASM systex will always be `;q[n]` where n is the qubit number to which gate `h` must be applied. so the function extracts this number n using `regex`. 
 These 'keyword' functions take this number and output the corresponding lines of code for a `Hadamard` gate that would use a prebuilt macro that contains the set of `play()` commands. This putput is then written to a file QUA.py
 
-The QUA.py file that is outputtedd is outputted with the headers:
+The QUA.py file that is outputtedd is outputted with the headers and footers:
 ```
 from qm-qua import *
 class MyClass:
     def QUA:
+         # start QUA
          with program() as output:
+     
+         # end QUA
+      return output
 ```
-These headers allow this file to be standalone python file which we can instantiate in any other file, namely the `wrapper.py`
+These headers and footers allow this file to be standalone python file which we can instantiate in any other file, namely the `wrapper.py`
 
 ## Example:
 
@@ -42,7 +46,7 @@ QASM_code.txt:
 qreg q[2];               #Initialize 2 Quantum Registers
 creg c[2];               #Initialize 2 Classical registers, streams
 h q[1];                  #apply hadamard gate to qubit 1
-cx q[1] -> q[2],         #apply CNOT gate to qubit 2 with qubit 1 as control
+cx q[1] -> q[2];,         #apply CNOT gate to qubit 2 with qubit 1 as control
 measure q[2] -> c[2];    #measure qubit 2 on classical register/stream 2.
 
 ```
@@ -53,10 +57,14 @@ We will use this example to understand the codeflow of `converter.py`
 
 - Then the function `line_parse()` takes `file_lines` and reads the first menber of the list, then it takes `file_lines[0]` and reads it and stores it in a string `match`, in this case its `qreg`. then through a conditional block it sends the command to the function whose name is stored in `match`. in this case its `qreg`
 
-- The function `qreg(args)` yakes the list `file_lines` and reads `file_lines[1]`, which in this case is `"q[2]"`, and then using `regex` its able to exptract the number 2 and onve it does this it generates the required lines of initialisation which include `I` and `Q`.
+- The function `qreg(args)` yakes the list `file_lines` and reads `file_lines[1]`, which in this case is `"q[2];"`, and then using `regex` its able to exptract the number 2 and onve it does this it generates the required lines of initialisation which include `I` and `Q`.
 
-once this is complete, the program goes back to reading the second line and does the same process for the rest of the code. 
+Once this is complete, the program goes back to reading the second line and does the same process for the rest of the code. 
 
+- for 2 qubit gates like CNOT and `measure` statements that have to qubits as arguments, the functions use regex to extract both the numbers. for example `CNOT_macro()` queries the 2nd and 4th members of the list `file_lines = ["cx", "q[1]", "->", "q[2];"]` and using regex extracts the qubut number on which the gate must be applied.
 
+This is how it processes the `barrier`, `cx` and  `measure` keywords.
+
+This goes on for all the lines in the file, the `EOF` trigger is used to send control to the `stream_processing()` function which adds th3 required lines of stream processing and the required footer `return output`.
 
 
