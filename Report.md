@@ -39,17 +39,17 @@ These headers allow this file to be standalone python file which we can instanti
 
 QASM_code.txt:
 ```
-qreg q[2]               #Initialize 2 Quantum Registers
-creg c[2]               #Initialize 2 Classical registers, streams
-h q[1]                  #apply hadamard gate to qubit 1
-cx q[1] -> q[2]         #apply CNOT gate to qubit 2 with qubit 1 as control
-measure q[2] -> c[2]    #measure qubit 2 on classical register/stream 2.
+qreg q[2];               #Initialize 2 Quantum Registers
+creg c[2];               #Initialize 2 Classical registers, streams
+h q[1];                  #apply hadamard gate to qubit 1
+cx q[1] -> q[2],         #apply CNOT gate to qubit 2 with qubit 1 as control
+measure q[2] -> c[2];    #measure qubit 2 on classical register/stream 2.
 
 ```
 
 We will use this example to understand the codeflow of `converter.py`
 
-- First the function `line_parse()` extracts the first line from the file, `qreg q[2]` and puts it in a list `file_lines` and returns it so now the contents of it are `file_lines = ["qreg", ";q[2]"]` 
+- First the function `line_parse()` extracts the first line from the file, `qreg q[2]` and puts it in a list `file_lines` and returns it so now the contents of it are `file_lines = ["qreg", "q[2];"]` 
 
 
 
