@@ -49,7 +49,13 @@ measure q[2] -> c[2];    #measure qubit 2 on classical register/stream 2.
 
 We will use this example to understand the codeflow of `converter.py`
 
-- First the function `line_parse()` extracts the first line from the file, `qreg q[2]` and puts it in a list `file_lines` and returns it so now the contents of it are `file_lines = ["qreg", "q[2];"]` 
+- First the function `file_parse()` extracts the first line from the file, `qreg q[2]` and puts it in a list `file_lines` and returns it so now the contents of `file_lines` are `file_lines = ["qreg", "q[2];"]` 
+
+- Then the function `line_parse()` takes `file_lines` and reads the first menber of the list, then it takes `file_lines[0]` and reads it and stores it in a string `match`, in this case its `qreg`. then through a conditional block it sends the command to the function whose name is stored in `match`. in this case its `qreg`
+
+- The function `qreg(args)` yakes the list `file_lines` and reads `file_lines[1]`, which in this case is `"q[2]"`, and then using `regex` its able to exptract the number 2 and onve it does this it generates the required lines of initialisation which include `I` and `Q`.
+
+once this is complete, the program goes back to reading the second line and does the same process for the rest of the code. 
 
 
 
