@@ -67,7 +67,7 @@ This is how it processes the `barrier`, `cx` and  `measure` keywords.
 
 This goes on for all the lines in the file, the `EOF` trigger is used to send control to the `stream_processing()` function which adds th3 required lines of stream processing and the required footer `return output`.
 
-## Specifications
+## Specifications:
 ```
 file_parse(filename)                    # takes filename as cli argument and reads lines sequentially 
 line_parse(file_lines)                  # parses each line passed by file_parse() and puts into list
@@ -83,3 +83,13 @@ z(args)                                 # 180° phase rotation on z axis
 barrier(args)                           # aligns qubit n to readout resonator n-1
 measure(args, file_lines, save_lines)   # adds the measure and align statements and appends the save statements to list save_lines.
 stream_processing(save_lines)           # adds the stream processing li es and the save lines
+```
+
+## Usage:
+```
+python3 convert.py [input_filename.JSON] > [output_file.py]
+
+input_filename -> input file containing the JSON data with attribute QUA. [must be .JSON  or .txt filetype]
+
+output_file.py -> file to pipeline the generated code.[must be .py filetype]
+```
