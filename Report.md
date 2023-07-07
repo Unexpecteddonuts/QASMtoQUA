@@ -90,6 +90,7 @@ stream_processing(save_lines)           # adds the stream processing li es and t
 python3 convert.py [input_filename.JSON] > [output_file.py]
 ```
 input_filename -> input file containing the JSON data with attribute QUA. [must be .JSON  or .txt filetype]
+
 output_file.py -> file to pipeline the generated code.[must be .py filetype]
 ```
 python3 wrapper.py
