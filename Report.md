@@ -67,7 +67,7 @@ This is how it processes the `barrier`, `cx` and  `measure` keywords.
 
 This goes on for all the lines in the file, the `EOF` trigger is used to send control to the `stream_processing()` function which adds th3 required lines of stream processing and the required footer `return output`.
 
-## Functions
+## Specifications
 ```
 file_parse(filename)                    # takes filename as cli argument and reads lines sequentially 
 line_parse(file_lines)                  # parses each line passed by file_parse() and puts into list
