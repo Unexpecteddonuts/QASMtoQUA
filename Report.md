@@ -67,4 +67,19 @@ This is how it processes the `barrier`, `cx` and  `measure` keywords.
 
 This goes on for all the lines in the file, the `EOF` trigger is used to send control to the `stream_processing()` function which adds th3 required lines of stream processing and the required footer `return output`.
 
-
+## Functions
+```
+file_parse(filename)
+line_parse(file_lines)
+qreg(args)
+creg(args)
+h(args)
+cx(args)
+x(args)
+sx(args)
+sxdg(args)
+y(args)                                 # 180° phase rotation on y axis
+z(args)                                 # 180° phase rotation on z axis
+barrier(args)                           # aligns qubit n to readout resonator n-1
+measure(args, file_lines, save_lines)   # adds the measure and align statements and appends the save statements to list save_lines.
+stream_processing(save_lines)           # adds the stream processing li es and the save lines
