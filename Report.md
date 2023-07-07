@@ -69,15 +69,15 @@ This goes on for all the lines in the file, the `EOF` trigger is used to send co
 
 ## Functions
 ```
-file_parse(filename)
-line_parse(file_lines)
-qreg(args)
-creg(args)
-h(args)
-cx(args)
-x(args)
-sx(args)                                # 90° phase rotation on x axis
-sxdg(args)                              # -90° phase rotation on x axis
+file_parse(filename)                    # takes filename as cli argument and reads lines sequentially 
+line_parse(file_lines)                  # parses each line passed by file_parse() and puts into list
+qreg(args)                              # initialisation of qubits guven in args
+creg(args)                              # creates classical streams
+h(args)                                 # Hadamard gate on qubit given in args
+cx(args)                                # CNOT gate on qubits given in args
+x(args)                                 # 180° phase rotation on x axis
+sx(args)                                # 90° phase rotation on x axis (equiv of our Xby2 macro
+sxdg(args)                              # -90° phase rotation on x axis (equiv of our mXby2 macro
 y(args)                                 # 180° phase rotation on y axis
 z(args)                                 # 180° phase rotation on z axis
 barrier(args)                           # aligns qubit n to readout resonator n-1
